@@ -1,0 +1,42 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=2669
+
+what is ?
+a tool to help you quick edit and save abbreviation, snippets .etc
+
+how to install?
+maybe you  want install snippetEmu first.
+
+unzip the file of you down, copy fastlane.vim to plugin directory, copy example_snippets.vim to you snippets directory if the file is not exist. write "let g:iwn_snippet_dir = your snippets directory"  to your  .vimrc file .  you are done!
+
+options you can set the  .vimrc for a example:
+let iwn_default_module = 'php'
+let iwn_include_modules = {'php': ['javascript'], 'symfony': ['javascript', 'php']}
+
+how to use?
+:IwnCreateModule test
+create a module named test
+
+:IwnUseModule test
+use the  test module
+
+:IwnAddAbb hello hello, world
+create a abbreviation for "hello, world", try input "hello<space>" 
+
+input these text:
+  hello,world
+  yes
+  no <sni>hello</sni>
+  hello <sni></sni>  
+select these text, and execute :IwnAddSnippet hello
+you will create a snippet named hello, try input "hello<tab>"
+
+some examples fo other command:
+IwnRemoveModule test
+IwnRemoveAbb hello
+IwnRemoveSnippet hello
+
+that's all, fun happing!
+
+
+
+
