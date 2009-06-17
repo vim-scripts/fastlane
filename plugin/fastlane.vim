@@ -77,14 +77,14 @@ endfunction
 function IwnCreateModule(str)
   let filename = IwnGetFilename(a:str)
   if (IwnCheckFile(filename)==1)
-    echo a:str . '模块已经被创建'
+    "echo a:str . '模块已经被创建'
     return
   endif
 
   let sample_file = IwnGetFilenameSample()
   let l = readfile(sample_file)
   if (writefile(l, filename)==0) 
-    echo "模块: " . a:str . "创建成功"
+    "echo "模块: " . a:str . "创建成功"
   endif 
 endfunction
 command! -nargs=1 IwnCreateModule :call IwnCreateModule(<f-args>)
@@ -95,9 +95,9 @@ function! IwnRemoveModule(str)
   let filename =  IwnGetFilename(module)
   if (IwnCheckFile(filename)==1)
     call delete(filename)
-    echo "模块: " . module . "删除成功"
+    "echo "模块: " . module . "删除成功"
   else 
-    echo "模块: " . module . "不存在"
+    "echo "模块: " . module . "不存在"
   endif
 endfunction
 command! -nargs=1 IwnRemoveModule :call IwnRemoveModule(<f-args>)
@@ -108,7 +108,7 @@ function! IwnUseModule(str)
   call IwnSetDefaultModule(module)
   let filename =  IwnGetFilename(module)
   if (IwnCheckFile(filename)==0)
-    echo "模块: " . module . "不存在"
+    "echo "模块: " . module . "不存在"
     return
   endif
 
@@ -122,7 +122,7 @@ function! IwnUseModule(str)
   endif
 
   execute "source " . filename
-  echo "模块: " . module . "使用开启"
+  "echo "模块: " . module . "使用开启"
 endfunction
 command! -nargs=1 IwnUseModule :call IwnUseModule(<f-args>)
 
@@ -164,7 +164,7 @@ function! IwnAddSnippet(name) range
   call writefile(content, filename)
 
   execute "source " . filename
-  echo "添加文本片断成功"
+  "echo "添加文本片断成功"
 endfunction
 command! -range=% -nargs=1 IwnAddSnippet :<line1>,<line2>call IwnAddSnippet(<f-args>)
 
@@ -177,7 +177,7 @@ function! IwnRemoveSnippet(name)
   let reg = 'v:val !~ "Snippet '.name. '"'
   call filter(content, reg)
   call writefile(content, filename)
-  echo "删除文本片断成功"
+  "echo "删除文本片断成功"
 
   execute "source " . filename
 endfunction
@@ -204,7 +204,7 @@ function! IwnAddAbb(...)
   call filter(content, reg)
   call add(content, value)
   call writefile(content, filename)
-  echo "添加缩写成功"
+  "echo "添加缩写成功"
 
   execute "source " . filename
 endfunction
@@ -221,7 +221,7 @@ function! IwnRemoveAbb (name)
   call filter(content, reg)
   call writefile(content, filename)
 
-  echo "删除缩写成功"
+  "echo "删除缩写成功"
   execute "source " . filename
 endfunction
 command! -nargs=1 IwnRemoveAbb :<line1>,<line2>call IwnRemoveAbb(<f-args>)
