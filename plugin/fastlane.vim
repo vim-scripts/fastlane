@@ -10,7 +10,7 @@
 
 " 获取默认模块
 function IwnGetDefaultModule()
-  if (exists('g:iwn_default_module')!=0)
+  if (exists('g:iwn_default_module'))
     return g:iwn_default_module
   else
     return 0
@@ -127,14 +127,12 @@ endfunction
 command! -nargs=1 IwnUseModule :call IwnUseModule(<f-args>)
 
 function! IwnAutoUseModule()
-  let module = IwnGetDefaultModule()
-  if (module!=0) 
-    echo module
-    call IwnUseModule(module)
+  if (exists('g:iwn_default_module'))
+    call IwnUseModule(g:iwn_default_module)
   endif
 endfunction
-
-autocmd BufEnter * call IwnAutoUseModule() 
+autocmd! BufEnter * call IwnAutoUseModule() 
+call IwnAutoUseModule()
 
 "创建文本片断
 function! IwnAddSnippet(name) range
